@@ -1,36 +1,19 @@
-import logo from './logo.svg';
 import './App.css';
-import Axios from "axios";
+import Navbar from './components/navigation/navbar';
+import Sidebar from './components/navigation/sidebar';
 
 function App() {
-  Axios({
-    method: "GET",
-    url: "http://localhost:9000/api",
-    headers: {
-      "Content-Type": "application/json"
-    }
-  }).then(res => {
-    console.log(res.data.message);
-  });
 
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <div>
+            <Navbar />
+            <div class="container-fluid">
+                <div class="row">
+                    <Sidebar />
+                </div>
+            </div>
+        </div>
+    );
 }
 
 export default App;
