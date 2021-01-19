@@ -17,10 +17,8 @@ function App() {
             <div class="container-fluid">
                 <div class="row">
                     <Sidebar />
-                    <div class="main col-md-9 col-lg-10 ms-sm-auto">
+                    <div class="main col-md-9 col-lg-10 ms-sm-auto p-3">
                         <Switch>
-                            {/* If the current URL is /about, this route is rendered
-            while the rest are ignored */}
                             <Route path="/bank">
                                 <Bank />
                             </Route>
