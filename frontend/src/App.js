@@ -14,10 +14,10 @@ function App() {
     return (
         <div>
             <Navbar />
-            <div class="container-fluid">
-                <div class="row">
+            <div className="container-fluid">
+                <div className="row">
                     <Sidebar />
-                    <div class="main col-md-9 col-lg-10 ms-sm-auto p-3">
+                    <div className="main col-md-9 col-lg-10 ms-sm-auto p-3">
                         <Switch>
                             <Route path="/bank">
                                 <Bank />

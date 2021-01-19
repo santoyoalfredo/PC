@@ -76,19 +76,19 @@ class Bank extends React.Component {
 
     render() {
         return (
-            <div class="col-md-4">
-                <table class="table table-light table-bordered align-middle">
+            <div className="col-md-4">
+                <table className="table table-light table-bordered align-middle">
                     <tbody>
                         <tr>
                             <td>Quarters</td>
                             <td>{this.state.quarters}</td>
                             <td>
-                                <div class="d-grid">
+                                <div className="d-grid">
                                     <button type="button" className="btn btn-success" onClick={this.counterUpdate.bind(this, 'quarters', true)}>+</button>
                                 </div>
                             </td>
                             <td>
-                                <div class="d-grid">
+                                <div className="d-grid">
                                     <button type="button" className={"btn btn-danger " + (this.state.quarters === 0 && 'disabled')} onClick={this.counterUpdate.bind(this, 'quarters', false)}>-</button>
                                 </div>
                             </td>
@@ -97,12 +97,12 @@ class Bank extends React.Component {
                             <td>Dimes</td>
                             <td>{this.state.dimes}</td>
                             <td>
-                                <div class="d-grid">
+                                <div className="d-grid">
                                     <button type="button" className="btn btn-success" onClick={this.counterUpdate.bind(this, 'dimes', true)}>+</button>
                                 </div>
                             </td>
                             <td>
-                                <div class="d-grid">
+                                <div className="d-grid">
                                     <button type="button" className={"btn btn-danger " + (this.state.dimes === 0 && 'disabled')} onClick={this.counterUpdate.bind(this, 'dimes', false)}>-</button>
                                 </div>
                             </td>
@@ -111,12 +111,12 @@ class Bank extends React.Component {
                             <td>Nickels</td>
                             <td>{this.state.nickels}</td>
                             <td>
-                                <div class="d-grid">
+                                <div className="d-grid">
                                     <button type="button" className="btn btn-success" onClick={this.counterUpdate.bind(this, 'nickels', true)}>+</button>
                                 </div>
                             </td>
                             <td>
-                                <div class="d-grid">
+                                <div className="d-grid">
                                     <button type="button" className={"btn btn-danger " + (this.state.nickels === 0 && 'disabled')} onClick={this.counterUpdate.bind(this, 'nickels', false)}>-</button>
                                 </div>
                             </td>
@@ -125,12 +125,12 @@ class Bank extends React.Component {
                             <td>Pennies</td>
                             <td>{this.state.pennies}</td>
                             <td>
-                                <div class="d-grid">
+                                <div className="d-grid">
                                     <button type="button" className="btn btn-success" onClick={this.counterUpdate.bind(this, 'pennies', true)}>+</button>
                                 </div>
                             </td>
                             <td>
-                                <div class="d-grid">
+                                <div className="d-grid">
                                     <button type="button" className={"btn btn-danger " + (this.state.pennies === 0 && 'disabled')} onClick={this.counterUpdate.bind(this, 'pennies', false)}>-</button>
                                 </div>
                             </td>
@@ -139,13 +139,13 @@ class Bank extends React.Component {
                             <td>Total</td>
                             <td>${this.calculateTotal()}</td>
                             <td>
-                                <div class="d-grid">
-                                    <button type="button" class="btn btn-primary" onClick={this.counterSave.bind(this)}>Save</button>
+                                <div className="d-grid">
+                                    <button type="button" className="btn btn-primary" onClick={this.counterSave.bind(this)}>Save</button>
                                 </div>
                             </td>
                             <td>
-                                <div class="d-grid">
-                                    <button type="button" class="btn btn-secondary" onClick={this.counterClear.bind(this)}>Clear</button>
+                                <div className="d-grid">
+                                    <button type="button" className="btn btn-secondary" onClick={this.counterClear.bind(this)}>Clear</button>
                                 </div>
                             </td>
                         </tr>

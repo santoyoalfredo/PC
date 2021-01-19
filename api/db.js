@@ -54,11 +54,6 @@ module.exports = {
         const bank = await Bank.findOne();
         if (bank) {
             bank.update(info);
-            // bank.setDataValue(quarters, quarters);
-            // bank.setDataValue(dimes, dimes);
-            // bank.setDataValue(nickels, nickels);
-            // bank.setDataValue(pennies, pennies);
-            // bank.save().catch(console.error);
             return true;
         } else {
             return false;
