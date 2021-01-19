@@ -10,8 +10,18 @@ router.get("/bank", function (req, res, next) {
         res.send(data);
     })
 });
+router.post("/bank", function (req, res, next) {
+    db.createBank().then(data => {
+        res.send(data);
+    })
+});
 router.put("/bank", function (req, res, next) {
     db.updateBank(req.body).then(data => {
+        res.send(data);
+    })
+});
+router.delete("/bank", function (req, res, next) {
+    db.deleteBank().then(data => {
         res.send(data);
     })
 });

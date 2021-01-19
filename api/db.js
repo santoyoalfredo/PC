@@ -40,6 +40,16 @@ module.exports = {
             },
         );
     },
+    // Create Bank information
+    async createBank() {
+        const bank = await Bank.create({
+            quarters: 0,
+            dimes: 0,
+            nickels: 0,
+            pennies: 0
+        });
+        return bank;
+    },
     // Get saved Bank information
     async getBank() {
         const bank = await Bank.findOne();
@@ -53,10 +63,15 @@ module.exports = {
     async updateBank(info) {
         const bank = await Bank.findOne();
         if (bank) {
-            bank.update(info);
+            await bank.update(info);
             return true;
         } else {
             return false;
         }
+    },
+    // Delete Bank information
+    async deleteBank() {
+        const bank = await Bank.findOne();
+        await bank.destroy();
     },
 };
