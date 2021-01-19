@@ -30,24 +30,38 @@ module.exports = {
         await Bank.findOrCreate(
             {
                 where: {
-                    quarters: 6,
                 },
                 defaults: {
-                    quarters: 6,
-                    dimes: 9,
-                    nickels: 1,
-                    pennies: 1
+                    quarters: 0,
+                    dimes: 0,
+                    nickels: 0,
+                    pennies: 0
                 }
             },
         );
     },
-    // Get saved channel ID
+    // Get saved Bank information
     async getBank() {
         const bank = await Bank.findOne();
         if (bank) {
             return bank;
         } else {
             return -1;
+        }
+    },
+    // Update Bank information
+    async updateBank(info) {
+        const bank = await Bank.findOne();
+        if (bank) {
+            bank.update(info);
+            // bank.setDataValue(quarters, quarters);
+            // bank.setDataValue(dimes, dimes);
+            // bank.setDataValue(nickels, nickels);
+            // bank.setDataValue(pennies, pennies);
+            // bank.save().catch(console.error);
+            return true;
+        } else {
+            return false;
         }
     },
 };

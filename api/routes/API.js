@@ -10,5 +10,11 @@ router.get("/bank", function (req, res, next) {
         res.send(data);
     })
 });
+router.put("/bank", function (req, res, next) {
+    // console.log(req);
+    db.updateBank(req.body).then(data => {
+        res.send(data);
+    })
+});
 
 module.exports = router;

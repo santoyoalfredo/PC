@@ -50,6 +50,26 @@ class Bank extends React.Component {
         this.setState({ quarters: 0, dimes: 0, nickels: 0, pennies: 0 });
     }
 
+    counterSave() {
+        Axios({
+            method: "PUT",
+            url: "http://localhost:9000/api/bank",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            data: {
+                quarters: this.state.quarters,
+                dimes: this.state.dimes,
+                nickels: this.state.nickels,
+                pennies: this.state.pennies
+            }
+        }).then(res => {
+            console.log("Nice!");
+        }).catch(error => {
+            console.log(error);
+        });
+    }
+
     calculateTotal() {
         return ((this.state.quarters * 25) + (this.state.dimes * 10) + (this.state.nickels * 5) + this.state.pennies) / 100;
     }
@@ -120,7 +140,7 @@ class Bank extends React.Component {
                             <td>${this.calculateTotal()}</td>
                             <td>
                                 <div class="d-grid">
-                                    <button type="button" class="btn btn-primary">Save</button>
+                                    <button type="button" class="btn btn-primary" onClick={this.counterSave.bind(this)}>Save</button>
                                 </div>
                             </td>
                             <td>
