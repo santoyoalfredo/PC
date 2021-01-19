@@ -27,12 +27,25 @@ module.exports = {
     // Set up database with initial tables
     async setUpDB() {
         await sequelize.sync();
+        await Bank.findOrCreate(
+            {
+                where: {
+                    quarters: 6,
+                },
+                defaults: {
+                    quarters: 6,
+                    dimes: 9,
+                    nickels: 1,
+                    pennies: 1
+                }
+            },
+        );
     },
     // Get saved channel ID
     async getBank() {
         const bank = await Bank.findOne();
         if (bank) {
-            return bank.getDataValue('quarters');
+            return bank;
         } else {
             return -1;
         }
