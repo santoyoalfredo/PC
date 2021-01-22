@@ -103,8 +103,8 @@ module.exports = {
         });
         return device;
     },
-    // Get saved Device information
-    async getDevice(id) {
+    // Get all saved Device information
+    async getAllDevices() {
         const devices = await Device.findAll();
         if (devices) {
             return devices;
@@ -112,8 +112,18 @@ module.exports = {
             return -1;
         }
     },
+    // Get saved Device information
+    async getDevice(id) {
+        console.log(id);
+        const device = await Device.findOne({ where: { id: id } });
+        if (device) {
+            return device;
+        } else {
+            return -1;
+        }
+    },
     // Update Device information
-    async updateDevice(entry) {
+    async updateDevice(entry, id) {
         const device = await Device.findOne({ where: { id: id } });
         if (device) {
             await device.update(entry);
@@ -123,8 +133,9 @@ module.exports = {
         }
     },
     // Delete Device information
-    async deleteDevice() {
+    async deleteDevice(id) {
         const device = await Device.findOne({ where: { id: id } });
         await device.destroy();
+        return true;
     },
 };
