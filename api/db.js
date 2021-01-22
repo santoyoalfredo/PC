@@ -13,6 +13,20 @@ const Bank = sequelize.define('bank', {
     freezeTableName: true,
 });
 
+const Device = sequelize.define('device', {
+    name: Sequelize.STRING,
+    manufacturer: Sequelize.STRING,
+    model: Sequelize.STRING,
+    length: {
+        type: Sequelize.INTEGER,
+        defaultValue: 0
+    },
+    primaryColor: Sequelize.STRING,
+    secondaryColor: Sequelize.STRING,
+    characteristics: Sequelize.STRING,
+    serial: Sequelize.INTEGER
+});
+
 module.exports = {
 
     // Test database connection
