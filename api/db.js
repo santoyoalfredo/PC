@@ -27,14 +27,51 @@ module.exports = {
     // Set up database with initial tables
     async setUpDB() {
         await sequelize.sync();
+        await Bank.findOrCreate(
+            {
+                where: {
+                },
+                defaults: {
+                    quarters: 0,
+                    dimes: 0,
+                    nickels: 0,
+                    pennies: 0
+                }
+            },
+        );
     },
-    // Get saved channel ID
+    // Create Bank information
+    async createBank() {
+        const bank = await Bank.create({
+            quarters: 0,
+            dimes: 0,
+            nickels: 0,
+            pennies: 0
+        });
+        return bank;
+    },
+    // Get saved Bank information
     async getBank() {
         const bank = await Bank.findOne();
         if (bank) {
-            return bank.getDataValue('quarters');
+            return bank;
         } else {
             return -1;
         }
+    },
+    // Update Bank information
+    async updateBank(info) {
+        const bank = await Bank.findOne();
+        if (bank) {
+            await bank.update(info);
+            return true;
+        } else {
+            return false;
+        }
+    },
+    // Delete Bank information
+    async deleteBank() {
+        const bank = await Bank.findOne();
+        await bank.destroy();
     },
 };
