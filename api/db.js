@@ -88,4 +88,43 @@ module.exports = {
         const bank = await Bank.findOne();
         await bank.destroy();
     },
+
+    // Create Device information
+    async createDevice(entry) {
+        const device = await Device.create({
+            name: entry.name,
+            manufacturer: entry.manufacturer,
+            model: entry.model,
+            length: entry.length,
+            primaryColor: entry.primaryColor,
+            secondaryColor: entry.secondaryColor,
+            characteristics: entry.characteristics,
+            serial: entry.serial
+        });
+        return device;
+    },
+    // Get saved Device information
+    async getDevice(id) {
+        const devices = await Device.findAll();
+        if (devices) {
+            return devices;
+        } else {
+            return -1;
+        }
+    },
+    // Update Device information
+    async updateDevice(entry) {
+        const device = await Device.findOne({ where: { id: id } });
+        if (device) {
+            await device.update(entry);
+            return true;
+        } else {
+            return false;
+        }
+    },
+    // Delete Device information
+    async deleteDevice() {
+        const device = await Device.findOne({ where: { id: id } });
+        await device.destroy();
+    },
 };
