@@ -6,6 +6,7 @@ import {
 } from "react-router-dom";
 import Navbar from './components/navigation/navbar';
 import Sidebar from './components/navigation/sidebar';
+import { ToastContainer } from 'react-toastify';
 import Bank from './components/bank/bank';
 import WIP from './components/wip';
 
@@ -18,6 +19,7 @@ function App() {
                 <div className="row">
                     <Sidebar />
                     <div className="main col-md-9 col-lg-10 ms-sm-auto p-3">
+                        <ToastContainer />
                         <Switch>
                             <Route path="/bank">
                                 <Bank />

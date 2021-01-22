@@ -2,6 +2,8 @@ import Axios from "axios";
 import React from "react";
 import Table from "../table";
 import Modal from "../modal";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
 
 class Bank extends React.Component {
 
@@ -106,7 +108,16 @@ class Bank extends React.Component {
                 prevNickels: this.state.nickels,
                 prevPennies: this.state.pennies
             });
-            console.log("Nice!");
+            console.log("Saved!");
+            toast.success('Bank saved!', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
         }).catch(error => {
             console.log(error);
         });
