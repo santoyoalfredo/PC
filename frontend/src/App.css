@@ -38,6 +38,59 @@
 }
 
 /*
+ * Colors
+ */
+.blue {
+  background-color: var(--bs-blue);
+  color: #fff;
+}
+.indigo {
+  background-color: var(--bs-indigo);
+  color: #fff;
+}
+.purple {
+  background-color: var(--bs-purple);
+  color: #fff;
+}
+.pink {
+  background-color: var(--bs-pink);
+  color: #fff;
+}
+.red {
+  background-color: var(--bs-red);
+  color: #fff;
+}
+.orange {
+  background-color: var(--bs-orange);
+  color: #000;
+}
+.yellow {
+  background-color: var(--bs-yellow);
+  color: #000;
+}
+.green {
+  background-color: var(--bs-green);
+  color: #fff;
+}
+.teal {
+  background-color: var(--bs-teal);
+  color: #000;
+}
+.cyan {
+  background-color: var(--bs-cyan);
+  color: #000;
+}
+.gray {
+  background-color: var(--bs-gray);
+  color: #fff;
+}
+.black {
+  background-color: var(--bs-dark);
+  color: #fff;
+}
+
+
+/*
  * Sidebar
  */
 

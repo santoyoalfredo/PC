@@ -1,6 +1,6 @@
 import Axios from "axios";
 import React from "react";
-import Table from "../table";
+import Table from "../table/table";
 import Modal from "../modal";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
@@ -184,6 +184,7 @@ class Bank extends React.Component {
                         function={this.counterDisable.bind(this)}
                     />
                     <Table
+                        type="bank"
                         headers={headers}
                         content={content}
                         counterUpdate={this.counterUpdate}
