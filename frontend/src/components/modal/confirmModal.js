@@ -1,4 +1,4 @@
-function Modal(props) {
+function ConfirmModal(props) {
     return (
         <div className="modal fade" id="confirmModal" tabIndex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
             <div className="modal-dialog">
@@ -20,4 +20,4 @@ function Modal(props) {
     );
 }
 
-export default Modal;
+export default ConfirmModal;

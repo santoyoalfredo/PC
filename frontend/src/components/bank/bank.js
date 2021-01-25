@@ -1,7 +1,7 @@
 import Axios from "axios";
 import React from "react";
 import Table from "../table/table";
-import Modal from "../modal";
+import ConfirmModal from "../modal/confirmModal";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 
@@ -178,7 +178,7 @@ class Bank extends React.Component {
         if (this.state.enabled) {
             return (
                 <div className="col-md-4">
-                    <Modal
+                    <ConfirmModal
                         label="Confirm Request"
                         message="Are you sure you wish to disable the module?"
                         function={this.counterDisable.bind(this)}

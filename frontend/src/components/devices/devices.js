@@ -1,7 +1,8 @@
 import Axios from "axios";
 import React from "react";
 import Table from "../table/table";
-import Modal from "../modal";
+import AddModal from "../modal/addModal";
+import ConfirmModal from "../modal/confirmModal";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 
@@ -11,8 +12,29 @@ class Devices extends React.Component {
         super(props);
         this.state = {
             enabled: true,
+            name: "",
+            manufacturer: "",
+            model: "",
+            length: 0,
+            primaryColor: "",
+            secondaryColor: "",
+            characteristics: "",
+            serial: "",
             devices: []
         };
+        this.handleChange = this.handleChange.bind(this);
+        this.devicesAdd = this.devicesAdd.bind(this);
+    }
+
+    handleChange(event) {
+        const target = event.target;
+        const value = target.value;
+        const name = target.name;
+
+        this.setState({
+            [name]: value
+        });
+        console.log(name + " = " + value);
     }
 
     componentDidMount() {
@@ -29,6 +51,42 @@ class Devices extends React.Component {
         }).then(res => {
             this.setState({
                 devices: res.data,
+            });
+            console.log(this.state.devices);
+        }).catch(error => {
+            console.log(error);
+        });
+    }
+
+    devicesAdd() {
+        console.log(this.state.length);
+        Axios({
+            method: "POST",
+            url: "http://localhost:9000/api/devices",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            data: {
+                name: this.state.name,
+                manufacturer: this.state.manufacturer,
+                model: this.state.model,
+                length: this.state.length,
+                primaryColor: this.state.primaryColor,
+                secondaryColor: this.state.secondaryColor,
+                characteristics: this.state.characteristics,
+                serial: this.state.serial,
+            }
+        }).then(res => {
+            console.log("Saved!");
+            this.devicesGet();
+            toast.success('Device saved!', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
             });
         }).catch(error => {
             console.log(error);
@@ -66,17 +124,27 @@ class Devices extends React.Component {
     }
 
     render() {
-        const headers = ['Name', 'Manufacturer', 'Model', 'Length', 'Color', 'Characteristics', 'Serial'];
+        const headers = ['Name', 'Manufacturer', 'Model', 'Length', 'Color', 'Notes', 'Serial'];
         let content = this.state.devices;
 
         if (this.state.enabled) {
             return (
                 <div className="table-responsive">
-                    <Modal
+                    <ConfirmModal
                         label="Confirm Request"
                         message="Are you sure you wish to disable the module?"
-                        function={this.devicesDisable.bind(this)}
+                        function={this.devicesDisable}
                     />
+                    <AddModal
+                        label="Add Device"
+                        name={this.state.name}
+                        handleSubmit={this.devicesAdd}
+                        handleChange={this.handleChange}
+                    />
+                    <div className="p-2 row">
+                        <button type="button" className="col-2 btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">Add Device</button>
+                        {/* <button type="button" class="col-2 btn btn-danger">Disable</button> */}
+                    </div>
                     <Table
                         classes="table-striped table-sm"
                         headers={headers}

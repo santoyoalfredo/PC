@@ -24,7 +24,7 @@ const Device = sequelize.define('device', {
     primaryColor: Sequelize.STRING,
     secondaryColor: Sequelize.STRING,
     characteristics: Sequelize.STRING,
-    serial: Sequelize.INTEGER
+    serial: Sequelize.STRING
 });
 
 module.exports = {
