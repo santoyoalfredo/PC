@@ -3,8 +3,7 @@ import React from "react";
 import Table from "../table/table";
 import DeviceModal from "../modal/deviceModal";
 import ConfirmModal from "../modal/confirmModal";
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.min.css';
+import { toastSuccess, toastError } from "../toasts/toastManager";
 
 class Devices extends React.Component {
 
@@ -95,18 +94,12 @@ class Devices extends React.Component {
             }
         }).then(res => {
             console.log("Saved!");
+            toastSuccess('Device saved!');
             this.devicesGet();
-            toast.success('Device saved!', {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
+
         }).catch(error => {
             console.log(error);
+            toastError('Uh oh! Device was unable to be saved!');
         });
     }
 
@@ -132,17 +125,10 @@ class Devices extends React.Component {
         }).then(res => {
             console.log("Saved!");
             this.devicesGet();
-            toast.success('Device updated!', {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
+            toastSuccess('Device updated!');
         }).catch(error => {
             console.log(error);
+            toastError('Uh oh! Device was unable to be updated!');
         });
     }
 
@@ -158,17 +144,10 @@ class Devices extends React.Component {
         }).then(res => {
             console.log("Deleted!");
             this.devicesGet();
-            toast.success('Device deleted!', {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
+            toastSuccess('Device deleted!');
         }).catch(error => {
             console.log(error);
+            toastError('Uh oh! Device was unable to be deleted!');
         });
     }
 
@@ -208,7 +187,7 @@ class Devices extends React.Component {
 
         if (this.state.enabled) {
             return (
-                <div className="table-responsive">
+                <div className="table-responsive-md">
                     <ConfirmModal
                         id="confirmModal"
                         label="Confirm Request"

@@ -2,8 +2,7 @@ import Axios from "axios";
 import React from "react";
 import Table from "../table/table";
 import ConfirmModal from "../modal/confirmModal";
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.min.css';
+import { ToastSuccess } from "../toasts/toastManager";
 
 class Bank extends React.Component {
 
@@ -109,15 +108,8 @@ class Bank extends React.Component {
                 prevPennies: this.state.pennies
             });
             console.log("Saved!");
-            toast.success('Bank saved!', {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
+            ToastSuccess("Bank saved!");
+
         }).catch(error => {
             console.log(error);
         });

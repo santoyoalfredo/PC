@@ -107,7 +107,14 @@ module.exports = {
     async getAllDevices() {
         const devices = await Device.findAll();
         if (devices) {
-            return devices;
+            return devices.sort((a, b) => {
+                if (a.getDataValue("name") > b.getDataValue("name"))
+                    return 1;
+                else if (a.getDataValue("name") < b.getDataValue("name"))
+                    return -1;
+                else
+                    return 0;
+            });
         } else {
             return -1;
         }
