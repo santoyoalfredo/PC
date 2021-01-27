@@ -2,7 +2,7 @@ import Axios from "axios";
 import React from "react";
 import Table from "../table/table";
 import ConfirmModal from "../modal/confirmModal";
-import { ToastSuccess } from "../toasts/toastManager";
+import { toastSuccess } from "../toasts/toastManager";
 
 class Bank extends React.Component {
 
@@ -108,7 +108,7 @@ class Bank extends React.Component {
                 prevPennies: this.state.pennies
             });
             console.log("Saved!");
-            ToastSuccess("Bank saved!");
+            toastSuccess("Bank saved!");
 
         }).catch(error => {
             console.log(error);
