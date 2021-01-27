@@ -22,11 +22,25 @@ class Devices extends React.Component {
             serial: "",
             devices: []
         };
+        this.clearState = this.clearState.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleEdit = this.handleEdit.bind(this);
         this.devicesAdd = this.devicesAdd.bind(this);
         this.devicesEdit = this.devicesEdit.bind(this);
         this.devicesDelete = this.devicesDelete.bind(this);
+    }
+
+    clearState() {
+        this.setState({
+            name: "",
+            manufacturer: "",
+            model: "",
+            length: 0,
+            primaryColor: "",
+            secondaryColor: "",
+            characteristics: "",
+            serial: "",
+        }, () => console.log(this.state));
 
     }
 
@@ -96,7 +110,6 @@ class Devices extends React.Component {
             console.log("Saved!");
             toastSuccess('Device saved!');
             this.devicesGet();
-
         }).catch(error => {
             console.log(error);
             toastError('Uh oh! Device was unable to be saved!');
@@ -197,6 +210,14 @@ class Devices extends React.Component {
                     <DeviceModal
                         id="addModal"
                         label="Add Device"
+                        name={this.state.name}
+                        manufacturer={this.state.manufacturer}
+                        model={this.state.model}
+                        length={this.state.length}
+                        primaryColor={this.state.primaryColor}
+                        secondaryColor={this.state.secondaryColor}
+                        characteristics={this.state.characteristics}
+                        serial={this.state.serial}
                         handleSubmit={this.devicesAdd}
                         handleChange={this.handleChange}
                     />
@@ -221,7 +242,7 @@ class Devices extends React.Component {
                         function={this.devicesDelete}
                     />
                     <div className="p-2 row">
-                        <button type="button" className="col-2 btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">Add Device</button>
+                        <button type="button" className="col-2 btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal" onClick={this.clearState}>Add Device</button>
                         {/* <button type="button" class="col-2 btn btn-danger">Disable</button> */}
                     </div>
                     <Table

@@ -8,7 +8,7 @@ function DeviceModal(props) {
                         <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div className="modal-body">
-                        <form className="row">
+                        <form name="deviceForm" className="row">
                             <div className="mb-3">
                                 <label htmlFor="nameInput" className="form-label">Name</label>
                                 <input type="name" name="name" className="form-control" id="nameInput" aria-describedby="nameHelp" value={props.name} onChange={props.handleChange}></input>
@@ -39,8 +39,10 @@ function DeviceModal(props) {
                                     <option className="green" value="green">Green</option>
                                     <option className="teal" value="teal">Teal</option>
                                     <option className="cyan" value="cyan">Cyan</option>
+                                    <option className="white" value="white">White</option>
                                     <option className="gray" value="gray">Gray</option>
                                     <option className="black" value="black">Black</option>
+                                    <option className="clear" value="clear">Clear</option>
                                 </select>
                             </div>
                             <div className="mb-3 col-5">
@@ -57,8 +59,10 @@ function DeviceModal(props) {
                                     <option className="green" value="green">Green</option>
                                     <option className="teal" value="teal">Teal</option>
                                     <option className="cyan" value="cyan">Cyan</option>
+                                    <option className="white" value="white">White</option>
                                     <option className="gray" value="gray">Gray</option>
                                     <option className="black" value="black">Black</option>
+                                    <option className="clear" value="clear">Clear</option>
                                 </select>
                             </div>
                             <div className="mb-3">

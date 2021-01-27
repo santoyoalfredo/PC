@@ -80,6 +80,10 @@
   background-color: var(--bs-cyan);
   color: #000;
 }
+.white {
+  background-color: var(--bs-white);
+  color: #000;
+}
 .gray {
   background-color: var(--bs-gray);
   color: #fff;
@@ -88,7 +92,10 @@
   background-color: var(--bs-dark);
   color: #fff;
 }
-
+.clear {
+  background-color: var(--bs-light);
+  color: #000;
+}
 
 /*
  * Sidebar
