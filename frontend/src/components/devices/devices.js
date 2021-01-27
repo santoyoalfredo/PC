@@ -27,6 +27,8 @@ class Devices extends React.Component {
         this.handleEdit = this.handleEdit.bind(this);
         this.devicesAdd = this.devicesAdd.bind(this);
         this.devicesEdit = this.devicesEdit.bind(this);
+        this.devicesDelete = this.devicesDelete.bind(this);
+
     }
 
     handleChange(event) {
@@ -109,7 +111,7 @@ class Devices extends React.Component {
     }
 
     devicesEdit() {
-        const id = this.state.id
+        const id = this.state.id;
 
         Axios({
             method: "PUT",
@@ -131,6 +133,32 @@ class Devices extends React.Component {
             console.log("Saved!");
             this.devicesGet();
             toast.success('Device updated!', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+        }).catch(error => {
+            console.log(error);
+        });
+    }
+
+    devicesDelete() {
+        const id = this.state.id;
+
+        Axios({
+            method: "DELETE",
+            url: "http://localhost:9000/api/devices/" + id,
+            headers: {
+                "Content-Type": "application/json"
+            },
+        }).then(res => {
+            console.log("Deleted!");
+            this.devicesGet();
+            toast.success('Device deleted!', {
                 position: "top-right",
                 autoClose: 5000,
                 hideProgressBar: false,
@@ -182,6 +210,7 @@ class Devices extends React.Component {
             return (
                 <div className="table-responsive">
                     <ConfirmModal
+                        id="confirmModal"
                         label="Confirm Request"
                         message="Are you sure you wish to disable the module?"
                         function={this.devicesDisable}
@@ -205,6 +234,12 @@ class Devices extends React.Component {
                         serial={this.state.serial}
                         handleSubmit={this.devicesEdit}
                         handleChange={this.handleChange}
+                    />
+                    <ConfirmModal
+                        id="deleteModal"
+                        label="Delete Device"
+                        message={"Are you sure you wish to delete " + this.state.name + "?"}
+                        function={this.devicesDelete}
                     />
                     <div className="p-2 row">
                         <button type="button" className="col-2 btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">Add Device</button>

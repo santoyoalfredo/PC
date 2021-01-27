@@ -1,6 +1,6 @@
 function ConfirmModal(props) {
     return (
-        <div className="modal fade" id="confirmModal" tabIndex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
+        <div className="modal fade" id={props.id} tabIndex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
             <div className="modal-dialog">
                 <div className="modal-content">
                     <div className="modal-header">

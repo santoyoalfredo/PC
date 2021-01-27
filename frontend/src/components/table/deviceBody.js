@@ -8,7 +8,7 @@ function DeviceBody(props) {
                     <tr key={entry.id}>
                         <td>
                             <button type="button" className="btn btn-primary" onClick={props.handleEdit.bind(this, entry)} data-bs-toggle="modal" data-bs-target="#editModal">Edit</button>
-                            <button type="button" className="btn btn-danger">X</button>
+                            <button type="button" className="btn btn-danger" onClick={props.handleEdit.bind(this, entry)} data-bs-toggle="modal" data-bs-target="#deleteModal">X</button>
                         </td>
                         <td>{entry.name}</td>
                         <td>{entry.manufacturer}</td>
