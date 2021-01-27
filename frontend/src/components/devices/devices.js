@@ -1,7 +1,7 @@
 import Axios from "axios";
 import React from "react";
 import Table from "../table/table";
-import AddModal from "../modal/addModal";
+import DeviceModal from "../modal/deviceModal";
 import ConfirmModal from "../modal/confirmModal";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
@@ -12,6 +12,7 @@ class Devices extends React.Component {
         super(props);
         this.state = {
             enabled: true,
+            id: 0,
             name: "",
             manufacturer: "",
             model: "",
@@ -23,7 +24,9 @@ class Devices extends React.Component {
             devices: []
         };
         this.handleChange = this.handleChange.bind(this);
+        this.handleEdit = this.handleEdit.bind(this);
         this.devicesAdd = this.devicesAdd.bind(this);
+        this.devicesEdit = this.devicesEdit.bind(this);
     }
 
     handleChange(event) {
@@ -35,6 +38,19 @@ class Devices extends React.Component {
             [name]: value
         });
         console.log(name + " = " + value);
+    }
+
+    handleEdit(entry) {
+        this.setState({
+            id: entry.id,
+            name: entry.name,
+            manufacturer: entry.manufacturer,
+            model: entry.model,
+            length: entry.length,
+            primaryColor: entry.primaryColor,
+            secondaryColor: entry.secondaryColor,
+            characteristics: entry.characteristics,
+        });
     }
 
     componentDidMount() {
@@ -59,10 +75,9 @@ class Devices extends React.Component {
     }
 
     devicesAdd() {
-        console.log(this.state.length);
         Axios({
             method: "POST",
-            url: "http://localhost:9000/api/devices",
+            url: "http://localhost:9000/api/devices/",
             headers: {
                 "Content-Type": "application/json"
             },
@@ -80,6 +95,42 @@ class Devices extends React.Component {
             console.log("Saved!");
             this.devicesGet();
             toast.success('Device saved!', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+        }).catch(error => {
+            console.log(error);
+        });
+    }
+
+    devicesEdit() {
+        const id = this.state.id
+
+        Axios({
+            method: "PUT",
+            url: "http://localhost:9000/api/devices/" + id,
+            headers: {
+                "Content-Type": "application/json"
+            },
+            data: {
+                name: this.state.name,
+                manufacturer: this.state.manufacturer,
+                model: this.state.model,
+                length: this.state.length,
+                primaryColor: this.state.primaryColor,
+                secondaryColor: this.state.secondaryColor,
+                characteristics: this.state.characteristics,
+                serial: this.state.serial,
+            }
+        }).then(res => {
+            console.log("Saved!");
+            this.devicesGet();
+            toast.success('Device updated!', {
                 position: "top-right",
                 autoClose: 5000,
                 hideProgressBar: false,
@@ -124,7 +175,7 @@ class Devices extends React.Component {
     }
 
     render() {
-        const headers = ['Name', 'Manufacturer', 'Model', 'Length', 'Color', 'Notes', 'Serial'];
+        const headers = ['', 'Name', 'Manufacturer', 'Model', 'Length', 'Color', 'Notes', 'Serial'];
         let content = this.state.devices;
 
         if (this.state.enabled) {
@@ -135,10 +186,24 @@ class Devices extends React.Component {
                         message="Are you sure you wish to disable the module?"
                         function={this.devicesDisable}
                     />
-                    <AddModal
+                    <DeviceModal
+                        id="addModal"
                         label="Add Device"
-                        name={this.state.name}
                         handleSubmit={this.devicesAdd}
+                        handleChange={this.handleChange}
+                    />
+                    <DeviceModal
+                        id="editModal"
+                        label="Edit Device"
+                        name={this.state.name}
+                        manufacturer={this.state.manufacturer}
+                        model={this.state.model}
+                        length={this.state.length}
+                        primaryColor={this.state.primaryColor}
+                        secondaryColor={this.state.secondaryColor}
+                        characteristics={this.state.characteristics}
+                        serial={this.state.serial}
+                        handleSubmit={this.devicesEdit}
                         handleChange={this.handleChange}
                     />
                     <div className="p-2 row">
@@ -150,6 +215,7 @@ class Devices extends React.Component {
                         headers={headers}
                         content={content}
                         type="devices"
+                        handleEdit={this.handleEdit}
                     />
                 </div>
             );

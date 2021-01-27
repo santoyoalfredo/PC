@@ -28,6 +28,7 @@ function Table(props) {
             {props.type === "devices" &&
                 <DeviceBody
                     content={props.content}
+                    handleEdit={props.handleEdit}
                 />
             }
         </table>
