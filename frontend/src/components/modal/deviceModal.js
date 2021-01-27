@@ -13,11 +13,11 @@ function DeviceModal(props) {
                                 <label htmlFor="nameInput" className="form-label">Name</label>
                                 <input type="name" name="name" className="form-control" id="nameInput" aria-describedby="nameHelp" value={props.name} onChange={props.handleChange}></input>
                             </div>
-                            <div className="mb-3">
+                            <div className="mb-3 col-md-4">
                                 <label htmlFor="manufacturerInput" className="form-label">Manufacturer</label>
                                 <input type="manufacturer" name="manufacturer" className="form-control" id="manufacturerInput" aria-describedby="manufacturerHelp" value={props.manufacturer} onChange={props.handleChange}></input>
                             </div>
-                            <div className="mb-3">
+                            <div className="mb-3 col-md-8">
                                 <label htmlFor="modelInput" className="form-label">Model</label>
                                 <input type="model" name="model" className="form-control" id="modelInput" aria-describedby="modelHelp" value={props.model} onChange={props.handleChange}></input>
                             </div>
@@ -25,7 +25,7 @@ function DeviceModal(props) {
                                 <label htmlFor="lengthInput" className="form-label">Length</label>
                                 <input type="length" name="length" className="form-control" id="lengthInput" aria-describedby="lengthHelp" value={props.length} onChange={props.handleChange}></input>
                             </div>
-                            <div className="mb-3 col-5">
+                            <div className="col-md-5">
                                 <label htmlFor="colorInput1" className="form-label">Color 1</label>
                                 <select className="form-select mb-3 col-5" name="primaryColor" aria-label="Color 1" value={props.primaryColor} onChange={props.handleChange}>
                                     <option>Select a color</option>
@@ -45,7 +45,7 @@ function DeviceModal(props) {
                                     <option className="clear" value="clear">Clear</option>
                                 </select>
                             </div>
-                            <div className="mb-3 col-5">
+                            <div className="col-md-5">
                                 <label htmlFor="colorsInput2" className="form-label">Color 2</label>
                                 <select className="form-select mb-3 col-5" name="secondaryColor" aria-label="Color 2" value={props.secondaryColor} onChange={props.handleChange}>
                                     <option>Select a color</option>

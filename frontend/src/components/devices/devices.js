@@ -200,7 +200,7 @@ class Devices extends React.Component {
 
         if (this.state.enabled) {
             return (
-                <div className="table-responsive-md">
+                <div>
                     <ConfirmModal
                         id="confirmModal"
                         label="Confirm Request"
@@ -242,16 +242,18 @@ class Devices extends React.Component {
                         function={this.devicesDelete}
                     />
                     <div className="p-2 row">
-                        <button type="button" className="col-2 btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal" onClick={this.clearState}>Add Device</button>
+                        <button type="button" className="btn btn-primary col-md-2" data-bs-toggle="modal" data-bs-target="#addModal" onClick={this.clearState}>Add Device</button>
                         {/* <button type="button" class="col-2 btn btn-danger">Disable</button> */}
                     </div>
-                    <Table
-                        classes="table-striped table-sm"
-                        headers={headers}
-                        content={content}
-                        type="devices"
-                        handleEdit={this.handleEdit}
-                    />
+                    <div className="table-responsive-md">
+                        <Table
+                            classes="table-striped table-sm"
+                            headers={headers}
+                            content={content}
+                            type="devices"
+                            handleEdit={this.handleEdit}
+                        />
+                    </div>
                 </div>
             );
         } else {
