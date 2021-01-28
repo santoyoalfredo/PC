@@ -198,10 +198,6 @@
 /*
  * Games
  */
- table.table.table-striped td.game-playing {
-    background-color: none;
-    background-image: none;
-}
 .game-nintendo-3ds {
   background-color: var(--bs-yellow);
   color: #000;

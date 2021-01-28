@@ -154,7 +154,7 @@ module.exports = {
         return true;
     },
 
-    // Create Device information
+    // Create Game information
     async createGame(entry) {
         const game = await Game.create({
             name: entry.name,
@@ -166,7 +166,7 @@ module.exports = {
         });
         return game;
     },
-    // Get all saved Device information
+    // Get all saved Game information
     async getAllGames() {
         const games = await Game.findAll();
         if (games) {
@@ -182,7 +182,7 @@ module.exports = {
             return -1;
         }
     },
-    // Get saved Device information
+    // Get saved Game information
     async getGame(id) {
         const game = await Game.findOne({ where: { id: id } });
         if (game) {
@@ -191,7 +191,7 @@ module.exports = {
             return -1;
         }
     },
-    // Update Device information
+    // Update Game information
     async updateGame(entry, id) {
         const game = await Game.findOne({ where: { id: id } });
         if (game) {
@@ -201,7 +201,7 @@ module.exports = {
             return false;
         }
     },
-    // Delete Device information
+    // Delete Game information
     async deleteGame(id) {
         const game = await Game.findOne({ where: { id: id } });
         await game.destroy();
