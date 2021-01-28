@@ -40,8 +40,7 @@ class Devices extends React.Component {
             secondaryColor: "",
             characteristics: "",
             serial: "",
-        }, () => console.log(this.state));
-
+        });
     }
 
     handleChange(event) {
@@ -52,7 +51,6 @@ class Devices extends React.Component {
         this.setState({
             [name]: value
         });
-        console.log(name + " = " + value);
     }
 
     handleEdit(entry) {
@@ -83,7 +81,6 @@ class Devices extends React.Component {
             this.setState({
                 devices: res.data,
             });
-            console.log(this.state.devices);
         }).catch(error => {
             console.log(error);
         });

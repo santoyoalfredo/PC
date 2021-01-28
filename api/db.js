@@ -130,7 +130,6 @@ module.exports = {
     },
     // Get saved Device information
     async getDevice(id) {
-        console.log(id);
         const device = await Device.findOne({ where: { id: id } });
         if (device) {
             return device;
@@ -185,7 +184,6 @@ module.exports = {
     },
     // Get saved Device information
     async getGame(id) {
-        console.log(id);
         const game = await Game.findOne({ where: { id: id } });
         if (game) {
             return game;

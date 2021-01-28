@@ -36,7 +36,7 @@ class Games extends React.Component {
             format: "",
             status: "",
             notes: "",
-        }, () => console.log(this.state));
+        });
 
     }
 
@@ -48,7 +48,6 @@ class Games extends React.Component {
         this.setState({
             [name]: value
         });
-        console.log(name + " = " + value);
     }
 
     handleEdit(entry) {
@@ -78,7 +77,6 @@ class Games extends React.Component {
             this.setState({
                 games: res.data,
             });
-            console.log(this.state.games);
         }).catch(error => {
             console.log(error);
         });
