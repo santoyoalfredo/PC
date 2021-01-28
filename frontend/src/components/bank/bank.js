@@ -171,6 +171,7 @@ class Bank extends React.Component {
             return (
                 <div className="col-md-4">
                     <ConfirmModal
+                        id="confirmModal"
                         label="Confirm Request"
                         message="Are you sure you wish to disable the module?"
                         function={this.counterDisable.bind(this)}
