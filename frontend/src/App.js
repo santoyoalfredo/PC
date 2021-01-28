@@ -8,6 +8,7 @@ import Navbar from './components/navigation/navbar';
 import Sidebar from './components/navigation/sidebar';
 import { ToastContainer } from 'react-toastify';
 import Bank from './components/bank/bank';
+import Devices from './components/devices/devices';
 import WIP from './components/wip';
 
 function App() {
@@ -23,6 +24,9 @@ function App() {
                         <Switch>
                             <Route path="/bank">
                                 <Bank />
+                            </Route>
+                            <Route path="/devices">
+                                <Devices />
                             </Route>
                             <Route path="/">
                                 <WIP />

@@ -13,6 +13,20 @@ const Bank = sequelize.define('bank', {
     freezeTableName: true,
 });
 
+const Device = sequelize.define('device', {
+    name: Sequelize.STRING,
+    manufacturer: Sequelize.STRING,
+    model: Sequelize.STRING,
+    length: {
+        type: Sequelize.INTEGER,
+        defaultValue: 0
+    },
+    primaryColor: Sequelize.STRING,
+    secondaryColor: Sequelize.STRING,
+    characteristics: Sequelize.STRING,
+    serial: Sequelize.STRING
+});
+
 module.exports = {
 
     // Test database connection
@@ -73,5 +87,62 @@ module.exports = {
     async deleteBank() {
         const bank = await Bank.findOne();
         await bank.destroy();
+    },
+
+    // Create Device information
+    async createDevice(entry) {
+        const device = await Device.create({
+            name: entry.name,
+            manufacturer: entry.manufacturer,
+            model: entry.model,
+            length: entry.length,
+            primaryColor: entry.primaryColor,
+            secondaryColor: entry.secondaryColor,
+            characteristics: entry.characteristics,
+            serial: entry.serial
+        });
+        return device;
+    },
+    // Get all saved Device information
+    async getAllDevices() {
+        const devices = await Device.findAll();
+        if (devices) {
+            return devices.sort((a, b) => {
+                if (a.getDataValue("name") > b.getDataValue("name"))
+                    return 1;
+                else if (a.getDataValue("name") < b.getDataValue("name"))
+                    return -1;
+                else
+                    return 0;
+            });
+        } else {
+            return -1;
+        }
+    },
+    // Get saved Device information
+    async getDevice(id) {
+        console.log(id);
+        const device = await Device.findOne({ where: { id: id } });
+        if (device) {
+            return device;
+        } else {
+            return -1;
+        }
+    },
+    // Update Device information
+    async updateDevice(entry, id) {
+        const device = await Device.findOne({ where: { id: id } });
+        if (device) {
+            await device.update(entry);
+            return true;
+        } else {
+            return false;
+        }
+    },
+    // Delete Device information
+    async deleteDevice(id) {
+        const device = await Device.findOne({ where: { id: id } });
+        await device.destroy();
+        return true;
     },
 };
