@@ -31,7 +31,7 @@ const Game = sequelize.define('game', {
     name: Sequelize.STRING,
     platform: Sequelize.STRING,
     genre: Sequelize.STRING,
-    format: Sequelize.INTEGER,
+    format: Sequelize.STRING,
     status: Sequelize.STRING,
     notes: Sequelize.STRING,
 });

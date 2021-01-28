@@ -1,6 +1,6 @@
 function ColorBadge(props) {
     return (
-        <span className={"badge " + (" " && props.color)}>{props.color}</span>
+        <span className={"badge " + (" " && props.class)}>{props.data}</span>
     );
 }
 

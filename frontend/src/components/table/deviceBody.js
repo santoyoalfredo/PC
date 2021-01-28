@@ -1,4 +1,4 @@
-import ColorBadge from "../colorBadge";
+import ColorBadge from "../colorBadges/colorBadge";
 
 function DeviceBody(props) {
     return (
@@ -21,9 +21,9 @@ function DeviceBody(props) {
                             (entry.length === 0) ? <td>-</td> : <td>{entry.length}</td>
                         }
                         <td>
-                            <ColorBadge color={entry.primaryColor} />
+                            <ColorBadge style={entry.primaryColor} data={entry.primaryColor} />
                             {
-                                (entry.secondaryColor) && <ColorBadge color={entry.secondaryColor} />
+                                (entry.secondaryColor) && <ColorBadge style={entry.secondaryColor} data={entry.secondaryColor} />
                             }
                         </td>
                         <td>{entry.characteristics}</td>

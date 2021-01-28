@@ -194,3 +194,31 @@
 .devices {
   font-size: 0.9em;
 }
+
+/*
+ * Games
+ */
+ table.table.table-striped td.game-playing {
+    background-color: none;
+    background-image: none;
+}
+.game-nintendo-3ds {
+  background-color: var(--bs-yellow);
+  color: #000;
+ }
+.game-nintendo-switch {
+  background-color: var(--bs-red);
+  color: #fff;
+}
+.game-pc {
+  background-color: var(--bs-white);
+  color: #000;
+}
+.game-ps {
+  background-color: #084298;
+  color: #fff;
+}
+.game-xbox-game-pass {
+  background-color: var(--bs-green);
+  color: #fff;
+}
