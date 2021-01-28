@@ -21,9 +21,9 @@ function DeviceBody(props) {
                             (entry.length === 0) ? <td>-</td> : <td>{entry.length}</td>
                         }
                         <td>
-                            <ColorBadge style={entry.primaryColor} data={entry.primaryColor} />
+                            <ColorBadge class={entry.primaryColor} data={entry.primaryColor} />
                             {
-                                (entry.secondaryColor) && <ColorBadge style={entry.secondaryColor} data={entry.secondaryColor} />
+                                (entry.secondaryColor) && <ColorBadge class={entry.secondaryColor} data={entry.secondaryColor} />
                             }
                         </td>
                         <td>{entry.characteristics}</td>
