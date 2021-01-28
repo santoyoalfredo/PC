@@ -218,6 +218,10 @@
   background-color: #084298;
   color: #fff;
 }
+.game-steam {
+  background-color: var(--bs-gray);
+  color: #fff;
+}
 .game-xbox-game-pass {
   background-color: var(--bs-green);
   color: #fff;
