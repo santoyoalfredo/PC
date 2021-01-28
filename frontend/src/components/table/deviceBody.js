@@ -1,4 +1,5 @@
 import ColorBadge from "../colorBadges/colorBadge";
+import { CapitalizeFirstLetter } from "../../lib/strings";
 
 function DeviceBody(props) {
     return (
@@ -21,9 +22,9 @@ function DeviceBody(props) {
                             (entry.length === 0) ? <td>-</td> : <td>{entry.length}</td>
                         }
                         <td>
-                            <ColorBadge class={entry.primaryColor} data={entry.primaryColor} />
+                            <ColorBadge class={entry.primaryColor} data={CapitalizeFirstLetter(entry.primaryColor)} />
                             {
-                                (entry.secondaryColor) && <ColorBadge class={entry.secondaryColor} data={entry.secondaryColor} />
+                                (entry.secondaryColor) && <ColorBadge class={entry.secondaryColor} data={CapitalizeFirstLetter(entry.secondaryColor)} />
                             }
                         </td>
                         <td>{entry.characteristics}</td>
