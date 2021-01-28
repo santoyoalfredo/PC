@@ -1,6 +1,8 @@
 import Header from "./header";
-import DeviceBody from "./deviceBody";
 import BankBody from "./bankBody";
+import DeviceBody from "./deviceBody";
+import GameBody from "./gameBody";
+
 
 function Table(props) {
     let content = [];
@@ -27,6 +29,12 @@ function Table(props) {
             }
             {props.type === "devices" &&
                 <DeviceBody
+                    content={props.content}
+                    handleEdit={props.handleEdit}
+                />
+            }
+            {props.type === "games" &&
+                <GameBody
                     content={props.content}
                     handleEdit={props.handleEdit}
                 />

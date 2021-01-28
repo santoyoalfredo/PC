@@ -53,4 +53,30 @@ router.delete("/devices/:id", function (req, res, next) {
     })
 });
 
+router.get("/games/:id", function (req, res, next) {
+    db.getGame(req.params.id).then(data => {
+        res.send(data);
+    })
+});
+router.get("/games", function (req, res, next) {
+    db.getAllGames().then(data => {
+        res.send(data);
+    })
+});
+router.post("/games", function (req, res, next) {
+    db.createGame(req.body).then(data => {
+        res.send(data);
+    })
+});
+router.put("/games/:id", function (req, res, next) {
+    db.updateGame(req.body, req.params.id).then(data => {
+        res.send(data);
+    })
+});
+router.delete("/games/:id", function (req, res, next) {
+    db.deleteGame(req.params.id).then(data => {
+        res.send(data);
+    })
+});
+
 module.exports = router;

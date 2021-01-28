@@ -27,6 +27,15 @@ const Device = sequelize.define('device', {
     serial: Sequelize.STRING
 });
 
+const Game = sequelize.define('game', {
+    name: Sequelize.STRING,
+    platform: Sequelize.STRING,
+    genre: Sequelize.STRING,
+    format: Sequelize.STRING,
+    status: Sequelize.STRING,
+    notes: Sequelize.STRING,
+});
+
 module.exports = {
 
     // Test database connection
@@ -121,7 +130,6 @@ module.exports = {
     },
     // Get saved Device information
     async getDevice(id) {
-        console.log(id);
         const device = await Device.findOne({ where: { id: id } });
         if (device) {
             return device;
@@ -143,6 +151,60 @@ module.exports = {
     async deleteDevice(id) {
         const device = await Device.findOne({ where: { id: id } });
         await device.destroy();
+        return true;
+    },
+
+    // Create Device information
+    async createGame(entry) {
+        const game = await Game.create({
+            name: entry.name,
+            platform: entry.platform,
+            genre: entry.genre,
+            format: entry.format,
+            status: entry.status,
+            notes: entry.notes
+        });
+        return game;
+    },
+    // Get all saved Device information
+    async getAllGames() {
+        const games = await Game.findAll();
+        if (games) {
+            return games.sort((a, b) => {
+                if (a.getDataValue("name") > b.getDataValue("name"))
+                    return 1;
+                else if (a.getDataValue("name") < b.getDataValue("name"))
+                    return -1;
+                else
+                    return 0;
+            });
+        } else {
+            return -1;
+        }
+    },
+    // Get saved Device information
+    async getGame(id) {
+        const game = await Game.findOne({ where: { id: id } });
+        if (game) {
+            return game;
+        } else {
+            return -1;
+        }
+    },
+    // Update Device information
+    async updateGame(entry, id) {
+        const game = await Game.findOne({ where: { id: id } });
+        if (game) {
+            await game.update(entry);
+            return true;
+        } else {
+            return false;
+        }
+    },
+    // Delete Device information
+    async deleteGame(id) {
+        const game = await Game.findOne({ where: { id: id } });
+        await game.destroy();
         return true;
     },
 };

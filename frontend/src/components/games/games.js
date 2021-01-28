@@ -1,11 +1,11 @@
 import Axios from "axios";
 import React from "react";
 import Table from "../table/table";
-import DeviceModal from "../modal/deviceModal";
+import GameModal from "../modal/gameModal";
 import ConfirmModal from "../modal/confirmModal";
 import { toastSuccess, toastError } from "../toasts/toastManager";
 
-class Devices extends React.Component {
+class Games extends React.Component {
 
     constructor(props) {
         super(props);
@@ -13,34 +13,31 @@ class Devices extends React.Component {
             enabled: true,
             id: 0,
             name: "",
-            manufacturer: "",
-            model: "",
-            length: 0,
-            primaryColor: "",
-            secondaryColor: "",
-            characteristics: "",
-            serial: "",
-            devices: []
+            platform: "",
+            genre: "",
+            format: 0,
+            status: "",
+            notes: "",
+            games: []
         };
         this.clearState = this.clearState.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleEdit = this.handleEdit.bind(this);
-        this.devicesAdd = this.devicesAdd.bind(this);
-        this.devicesEdit = this.devicesEdit.bind(this);
-        this.devicesDelete = this.devicesDelete.bind(this);
+        this.gamesAdd = this.gamesAdd.bind(this);
+        this.gamesEdit = this.gamesEdit.bind(this);
+        this.gamesDelete = this.gamesDelete.bind(this);
     }
 
     clearState() {
         this.setState({
             name: "",
-            manufacturer: "",
-            model: "",
-            length: 0,
-            primaryColor: "",
-            secondaryColor: "",
-            characteristics: "",
-            serial: "",
+            platform: "",
+            genre: "",
+            format: "",
+            status: "",
+            notes: "",
         });
+
     }
 
     handleChange(event) {
@@ -57,129 +54,124 @@ class Devices extends React.Component {
         this.setState({
             id: entry.id,
             name: entry.name,
-            manufacturer: entry.manufacturer,
-            model: entry.model,
-            length: entry.length,
-            primaryColor: entry.primaryColor,
-            secondaryColor: entry.secondaryColor,
-            characteristics: entry.characteristics,
+            platform: entry.platform,
+            genre: entry.genre,
+            format: entry.format,
+            status: entry.status,
+            notes: entry.notes,
         });
     }
 
     componentDidMount() {
-        this.devicesGet();
+        this.gamesGet();
     }
 
-    devicesGet() {
+    gamesGet() {
         Axios({
             method: "GET",
-            url: "http://localhost:9000/api/devices",
+            url: "http://localhost:9000/api/games",
             headers: {
                 "Content-Type": "application/json"
             }
         }).then(res => {
             this.setState({
-                devices: res.data,
+                games: res.data,
             });
         }).catch(error => {
             console.log(error);
         });
     }
 
-    devicesAdd() {
+    gamesAdd() {
         Axios({
             method: "POST",
-            url: "http://localhost:9000/api/devices/",
+            url: "http://localhost:9000/api/games/",
             headers: {
                 "Content-Type": "application/json"
             },
             data: {
                 name: this.state.name,
-                manufacturer: this.state.manufacturer,
-                model: this.state.model,
-                length: this.state.length,
-                primaryColor: this.state.primaryColor,
-                secondaryColor: this.state.secondaryColor,
-                characteristics: this.state.characteristics,
-                serial: this.state.serial,
+                platform: this.state.platform,
+                genre: this.state.genre,
+                format: this.state.format,
+                status: this.state.status,
+                notes: this.state.notes,
             }
         }).then(res => {
             console.log("Saved!");
-            toastSuccess('Device saved!');
-            this.devicesGet();
+            toastSuccess('Game saved!');
+            this.gamesGet();
         }).catch(error => {
             console.log(error);
-            toastError('Uh oh! Device was unable to be saved!');
+            toastError('Uh oh! Game was unable to be saved!');
         });
     }
 
-    devicesEdit() {
+    gamesEdit() {
         const id = this.state.id;
 
         Axios({
             method: "PUT",
-            url: "http://localhost:9000/api/devices/" + id,
+            url: "http://localhost:9000/api/games/" + id,
             headers: {
                 "Content-Type": "application/json"
             },
             data: {
                 name: this.state.name,
-                manufacturer: this.state.manufacturer,
-                model: this.state.model,
-                length: this.state.length,
-                primaryColor: this.state.primaryColor,
-                secondaryColor: this.state.secondaryColor,
-                characteristics: this.state.characteristics,
-                serial: this.state.serial,
+                platform: this.state.platform,
+                genre: this.state.genre,
+                format: this.state.format,
+                status: this.state.status,
+                notes: this.state.notes,
             }
         }).then(res => {
             console.log("Saved!");
-            this.devicesGet();
-            toastSuccess('Device updated!');
+            this.gamesGet();
+            toastSuccess('Game updated!');
         }).catch(error => {
             console.log(error);
-            toastError('Uh oh! Device was unable to be updated!');
+            toastError('Uh oh! Game was unable to be updated!');
         });
     }
 
-    devicesDelete() {
+    gamesDelete() {
         const id = this.state.id;
 
         Axios({
             method: "DELETE",
-            url: "http://localhost:9000/api/devices/" + id,
+            url: "http://localhost:9000/api/games/" + id,
             headers: {
                 "Content-Type": "application/json"
             },
         }).then(res => {
             console.log("Deleted!");
-            this.devicesGet();
-            toastSuccess('Device deleted!');
+            this.gamesGet();
+            toastSuccess('Game deleted!');
         }).catch(error => {
             console.log(error);
-            toastError('Uh oh! Device was unable to be deleted!');
+            toastError('Uh oh! Game was unable to be deleted!');
         });
     }
 
-    devicesEnable() {
+    gamesEnable() {
         Axios({
             method: "GET",
-            url: "http://localhost:9000/api/devices",
+            url: "http://localhost:9000/api/games",
             headers: {
                 "Content-Type": "application/json"
             },
         }).then(res => {
-            this.devicesGet();
+            this.gamesGet();
             this.setState({ enabled: true });
         }).catch(error => {
             console.log(error);
         });
     }
 
-    devicesDisable() {
+    gamesDisable() {
         Axios({
             method: "DELETE",
-            url: "http://localhost:9000/api/devices",
+            url: "http://localhost:9000/api/games",
             headers: {
                 "Content-Type": "application/json"
             },
@@ -192,8 +184,8 @@ class Devices extends React.Component {
     }
 
     render() {
-        const headers = ['', 'Name', 'Manufacturer', 'Model', 'Length', 'Color', 'Notes', 'Serial'];
-        let content = this.state.devices;
+        const headers = ['', 'Name', 'Platform', 'Genre', 'Format', 'Status', 'Notes'];
+        let content = this.state.games;
 
         if (this.state.enabled) {
             return (
@@ -204,50 +196,46 @@ class Devices extends React.Component {
                         message="Are you sure you wish to disable the module?"
                         function={this.devicesDisable}
                     />
-                    <DeviceModal
+                    <GameModal
                         id="addModal"
-                        label="Add Device"
+                        label="Add Game"
                         name={this.state.name}
-                        manufacturer={this.state.manufacturer}
-                        model={this.state.model}
-                        length={this.state.length}
-                        primaryColor={this.state.primaryColor}
-                        secondaryColor={this.state.secondaryColor}
-                        characteristics={this.state.characteristics}
-                        serial={this.state.serial}
-                        handleSubmit={this.devicesAdd}
+                        platform={this.state.platform}
+                        genre={this.state.genre}
+                        format={this.state.format}
+                        status={this.state.status}
+                        notes={this.state.notes}
+                        handleSubmit={this.gamesAdd}
                         handleChange={this.handleChange}
                     />
-                    <DeviceModal
+                    <GameModal
                         id="editModal"
-                        label="Edit Device"
+                        label="Edit Game"
                         name={this.state.name}
-                        manufacturer={this.state.manufacturer}
-                        model={this.state.model}
-                        length={this.state.length}
-                        primaryColor={this.state.primaryColor}
-                        secondaryColor={this.state.secondaryColor}
-                        characteristics={this.state.characteristics}
-                        serial={this.state.serial}
-                        handleSubmit={this.devicesEdit}
+                        platform={this.state.platform}
+                        genre={this.state.genre}
+                        format={this.state.format}
+                        status={this.state.status}
+                        notes={this.state.notes}
+                        handleSubmit={this.gamesEdit}
                         handleChange={this.handleChange}
                     />
                     <ConfirmModal
                         id="deleteModal"
-                        label="Delete Device"
+                        label="Delete Game"
                         message={"Are you sure you wish to delete " + this.state.name + "?"}
-                        function={this.devicesDelete}
+                        function={this.gamesDelete}
                     />
                     <div className="p-2 row">
-                        <button type="button" className="btn btn-primary col-md-2" data-bs-toggle="modal" data-bs-target="#addModal" onClick={this.clearState}>Add Device</button>
+                        <button type="button" className="btn btn-primary col-md-2" data-bs-toggle="modal" data-bs-target="#addModal" onClick={this.clearState}>Add Game</button>
                         {/* <button type="button" class="col-2 btn btn-danger">Disable</button> */}
                     </div>
                     <div className="table-responsive-md">
                         <Table
-                            classes="table-striped table-sm"
+                            classes="table-sm"
                             headers={headers}
                             content={content}
-                            type="devices"
+                            type="games"
                             handleEdit={this.handleEdit}
                         />
                     </div>
@@ -256,7 +244,7 @@ class Devices extends React.Component {
         } else {
             return (
                 <div>
-                    <button type="button" className="btn btn-primary" onClick={this.devicesEnable.bind(this)}>Enable</button>
+                    <button type="button" className="btn btn-primary" onClick={this.gamesEnable.bind(this)}>Enable</button>
                 </div>
             );
         }
@@ -264,4 +252,4 @@ class Devices extends React.Component {
     }
 }
 
-export default Devices;
+export default Games;
