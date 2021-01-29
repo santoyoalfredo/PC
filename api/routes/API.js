@@ -13,7 +13,7 @@ router.get("/", function (req, res, next) {
 router.get("/bank", function (req, res, next) {
     db.getBank().then(data => {
         if (data === -1)
-            res.json('No bank information found');
+            res.status(404).json({ error: 'No bank information found' });
         else
             res.json(data);
     })
@@ -26,7 +26,7 @@ router.post("/bank", function (req, res, next) {
 router.put("/bank", function (req, res, next) {
     db.updateBank(req.body).then(data => {
         if (data === -1)
-            res.json('Update unsuccessful');
+            res.status(404).json({ error: 'No bank information found. Update unsuccessful.' });
         else
             res.json(data);
     })
@@ -34,7 +34,7 @@ router.put("/bank", function (req, res, next) {
 router.delete("/bank", function (req, res, next) {
     db.deleteBank().then(data => {
         if (data === -1)
-            res.json('Delete unsuccessful');
+            res.status(404).json({ error: 'No bank information found. Delete unsuccessful.' });
         else
             res.json('Delete successful');
     })
@@ -46,7 +46,7 @@ router.delete("/bank", function (req, res, next) {
 router.get("/devices", function (req, res, next) {
     db.getAllDevices().then(data => {
         if (data === -1)
-            res.json('No devices found');
+            res.status(404).json({ error: 'No device information found' });
         else
             res.json(data);
     })
@@ -54,7 +54,7 @@ router.get("/devices", function (req, res, next) {
 router.get("/devices/:id", function (req, res, next) {
     db.getDevice(req.params.id).then(data => {
         if (data === -1)
-            res.json('No device with that ID found');
+            res.status(404).json({ error: 'No device with that ID found' });
         else
             res.json(data);
     })
@@ -67,7 +67,7 @@ router.post("/devices", function (req, res, next) {
 router.put("/devices/:id", function (req, res, next) {
     db.updateDevice(req.body, req.params.id).then(data => {
         if (data === -1)
-            res.json('Update unsuccessful');
+            res.status(404).json({ error: 'No device with that ID found. Update unsuccessful.' });
         else
             res.json(data);
     })
@@ -75,7 +75,7 @@ router.put("/devices/:id", function (req, res, next) {
 router.delete("/devices/:id", function (req, res, next) {
     db.deleteDevice(req.params.id).then(data => {
         if (data === -1)
-            res.json('Delete unsuccessful');
+            res.status(404).json({ error: 'No device with that ID found. Delete unsuccessful.' });
         else
             res.json('Deleted device with ID ' + data);
     })
@@ -84,18 +84,18 @@ router.delete("/devices/:id", function (req, res, next) {
 /*
  * Games Routing
  */
-router.get("/games/:id", function (req, res, next) {
-    db.getGame(req.params.id).then(data => {
+router.get("/games", function (req, res, next) {
+    db.getAllGames().then(data => {
         if (data === -1)
-            res.json('No game with that ID found');
+            res.status(404).json({ error: 'No game information found' });
         else
             res.json(data);
     })
 });
-router.get("/games", function (req, res, next) {
-    db.getAllGames().then(data => {
+router.get("/games/:id", function (req, res, next) {
+    db.getGame(req.params.id).then(data => {
         if (data === -1)
-            res.json('No games found');
+            res.status(404).json({ error: 'No game with that ID found' });
         else
             res.json(data);
     })
@@ -108,7 +108,7 @@ router.post("/games", function (req, res, next) {
 router.put("/games/:id", function (req, res, next) {
     db.updateGame(req.body, req.params.id).then(data => {
         if (data === -1)
-            res.json('Update unsuccessful');
+            res.status(404).json({ error: 'No game with that ID found. Update unsuccessful.' });
         else
             res.json(data);
     })
@@ -116,7 +116,7 @@ router.put("/games/:id", function (req, res, next) {
 router.delete("/games/:id", function (req, res, next) {
     db.deleteGame(req.params.id).then(data => {
         if (data === -1)
-            res.json('Delete unsuccessful');
+            res.status(404).json({ error: 'No game with that ID found. Delete unsuccessful.' });
         else
             res.json('Deleted game with ID ' + data);
     })
