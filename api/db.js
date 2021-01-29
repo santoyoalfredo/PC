@@ -76,26 +76,30 @@ module.exports = {
     // Get saved Bank information
     async getBank() {
         const bank = await Bank.findOne();
-        if (bank) {
+        if (bank)
             return bank;
-        } else {
+        else
             return -1;
-        }
+
     },
     // Update Bank information
     async updateBank(info) {
         const bank = await Bank.findOne();
         if (bank) {
             await bank.update(info);
-            return true;
-        } else {
-            return false;
-        }
+            return bank;
+        } else
+            return -1;
     },
     // Delete Bank information
     async deleteBank() {
         const bank = await Bank.findOne();
-        await bank.destroy();
+        if (bank) {
+            await bank.destroy();
+            return 0;
+        }
+        else
+            return -1;
     },
 
     // Create Device information
@@ -142,16 +146,20 @@ module.exports = {
         const device = await Device.findOne({ where: { id: id } });
         if (device) {
             await device.update(entry);
-            return true;
+            return device;
         } else {
-            return false;
+            return -1;
         }
     },
     // Delete Device information
     async deleteDevice(id) {
         const device = await Device.findOne({ where: { id: id } });
-        await device.destroy();
-        return true;
+        if (device) {
+            await device.destroy();
+            return id;
+        }
+        else
+            return -1;
     },
 
     // Create Game information
@@ -196,15 +204,19 @@ module.exports = {
         const game = await Game.findOne({ where: { id: id } });
         if (game) {
             await game.update(entry);
-            return true;
+            return game;
         } else {
-            return false;
+            return -1;
         }
     },
     // Delete Game information
     async deleteGame(id) {
         const game = await Game.findOne({ where: { id: id } });
-        await game.destroy();
-        return true;
+        if (game) {
+            await game.destroy();
+            return id;
+        }
+        else
+            return -1;
     },
 };
