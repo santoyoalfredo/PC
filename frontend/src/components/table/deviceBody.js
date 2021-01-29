@@ -9,10 +9,10 @@ function DeviceBody(props) {
                     <tr key={entry.id}>
                         <td>
                             <button type="button" className="btn btn-sm btn-primary" onClick={props.handleEdit.bind(this, entry)} data-bs-toggle="modal" data-bs-target="#editModal">
-                                <i class="bi bi-pencil-square"></i>
+                                <i className="bi bi-pencil-square"></i>
                             </button>
                             <button type="button" className="btn btn-sm btn-danger" onClick={props.handleEdit.bind(this, entry)} data-bs-toggle="modal" data-bs-target="#deleteModal">
-                                <i class="bi bi-x-square"></i>
+                                <i className="bi bi-x-square"></i>
                             </button>
                         </td>
                         <td>{entry.name}</td>

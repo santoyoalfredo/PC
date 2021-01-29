@@ -1,7 +1,7 @@
 function ToastSuccess(props) {
     return (
         <div>
-            <i class="bi bi-check2"></i>{" " + props.message}
+            <i className="bi bi-check2"></i>{" " + props.message}
         </div>
     );
 }
