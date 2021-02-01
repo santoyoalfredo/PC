@@ -1,10 +1,18 @@
 var express = require("express");
 var router = express.Router();
+
 var db = require("../db");
 
 // Default API Route
 router.get("/", function (req, res, next) {
     res.json("API is working properly");
+});
+
+router.get("/user", (req, res) => {
+    if (req.user)
+        res.json(req.user);
+    else
+        res.status(204).json({ error: "No active user" });
 });
 
 /*
