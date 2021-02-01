@@ -177,7 +177,6 @@ class Games extends React.Component {
             },
         }).then(res => {
             this.setState({ enabled: false });
-            console.log(res);
         }).catch(error => {
             console.log(error);
         });
