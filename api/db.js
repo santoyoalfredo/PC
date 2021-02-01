@@ -4,6 +4,16 @@ const { Sequelize } = require('sequelize');
 const sequelize = new Sequelize('postgres://postgres:postgres@localhost:5432/pc') // Example for postgres
 
 // Model definitions
+const User = sequelize.define('user', {
+    id: {
+        type: Sequelize.UUID,
+        defaultValue: Sequelize.UUIDV4,
+        primaryKey: true
+    },
+    name: Sequelize.STRING,
+    googleID: Sequelize.STRING,
+});
+
 const Bank = sequelize.define('bank', {
     quarters: Sequelize.INTEGER,
     dimes: Sequelize.INTEGER,
@@ -63,6 +73,26 @@ module.exports = {
             },
         );
     },
+
+    // Get saved User information
+    async getUser(id) {
+        const user = await User.findOrCreate({ where: { id: id } });
+        if (user) {
+            return user;
+        } else {
+            return -1;
+        }
+    },
+    // Get saved Google User information
+    async getGoogleUser(profile) {
+        const user = await User.findOrCreate({ where: { googleID: profile.id, name: profile.name.givenName } });
+        if (user) {
+            return user;
+        } else {
+            return -1;
+        }
+    },
+
     // Create Bank information
     async createBank() {
         const bank = await Bank.create({
